@@ -19,7 +19,7 @@ public class PropManager {
      * Returns the singleton instance of PropManager. If it doesn't exist, a new instance is created.
      * @return the singleton instance of PropManager
      */
-    public static PropManager getTestPropManager() {
+    public static PropManager getPropManager() {
         if (propManager == null) {
             propManager = new PropManager();
         }

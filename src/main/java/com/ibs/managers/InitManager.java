@@ -6,7 +6,7 @@ import static com.ibs.utils.PropConst.IMPLICITLY_WAIT;
 import static com.ibs.utils.PropConst.PAGE_LOAD_TIMEOUT;
 
 public class InitManager {
-    private static final PropManager propManager = PropManager.getTestPropManager();
+    private static final PropManager propManager = PropManager.getPropManager();
     private static final DriverManager driverManager = DriverManager.getDriverManager();
 
     /**

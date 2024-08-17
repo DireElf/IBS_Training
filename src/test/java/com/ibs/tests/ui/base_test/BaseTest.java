@@ -23,16 +23,16 @@ public class BaseTest {
 
     @Before
     public void BeforeEach() {
-        driverManager.getWebDriver().get(PropManager.getTestPropManager().getProperty(TEST_APP_URL));
+        driverManager.getWebDriver().get(PropManager.getPropManager().getProperty(TEST_APP_URL));
         driverManager.getWebDriver().manage().
                 timeouts().pageLoadTimeout(
                         Duration.ofSeconds(
-                                Long.parseLong(PropManager.getTestPropManager().getProperty(PAGE_LOAD_TIMEOUT))
+                                Long.parseLong(PropManager.getPropManager().getProperty(PAGE_LOAD_TIMEOUT))
                         ));
         driverManager.getWebDriver().manage().
                 timeouts().implicitlyWait(
                         Duration.ofSeconds(
-                                Long.parseLong(PropManager.getTestPropManager().getProperty(IMPLICITLY_WAIT))
+                                Long.parseLong(PropManager.getPropManager().getProperty(IMPLICITLY_WAIT))
                         ));
     }
 

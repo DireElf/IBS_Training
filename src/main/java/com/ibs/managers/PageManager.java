@@ -11,7 +11,7 @@ public class PageManager {
     private ModalWindow modalWindow;
 
     // Private constructor to prevent instantiation from other classes
-    private PageManager() {};
+    private PageManager() {}
 
     /**
      * Returns the singleton instance of PageManager. If it doesn't exist, a new instance is created.
