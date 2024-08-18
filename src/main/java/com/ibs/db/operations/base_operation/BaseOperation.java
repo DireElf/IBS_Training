@@ -8,34 +8,46 @@ import java.sql.*;
 import static com.ibs.utils.PropConst.*;
 
 public class BaseOperation {
+    //TODO insert javadoc
     protected static PropManager propManager = PropManager.getPropManager();
 
-    protected static Connection connection = DBUtils.getConnection(
+    protected Connection connection = DBUtils.getConnection(
             propManager.getProperty(JDBC_H2_URL),
             propManager.getProperty(JDBC_H2_USER),
             propManager.getProperty(JDBC_H2_PASS));
 
-    public static ResultSet makeQuery(Connection connection, String queryString) {
+    public ResultSet makeQuery(Connection connection, String queryString, Object... params) {
         ResultSet resultSet = null;
-        boolean hasResultSet;
         try {
-            Statement statement = connection.createStatement();
-            hasResultSet = statement.execute(queryString);
-            if (hasResultSet) {
-                resultSet = statement.executeQuery(queryString);
-            }
+            PreparedStatement pStatement = getPreparedStatement(connection, queryString, params);
+            resultSet = pStatement.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return resultSet;
     }
 
-    public static boolean makeUpdateQuery(Connection connection, String queryString) {
+    public boolean makeUpdateQuery(Connection connection, String queryString, Object... params) {
         try {
-            return connection.createStatement().executeUpdate(queryString) > 0;
+            PreparedStatement pStatement = getPreparedStatement(connection, queryString, params);
+            return pStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private PreparedStatement getPreparedStatement(Connection connection, String queryString, Object... params) {
+        PreparedStatement pStatement = null;
+        try {
+            pStatement = connection.prepareStatement(queryString);
+            int paramIndex = 1;
+            for (int i = 0; i < params.length; i++) {
+                pStatement.setObject(paramIndex++, params[i]);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pStatement;
     }
 }

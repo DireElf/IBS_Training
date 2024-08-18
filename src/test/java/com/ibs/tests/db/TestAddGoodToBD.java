@@ -12,9 +12,11 @@ public class TestAddGoodToBD extends BaseDBTest {
             dbManager.getAddGoodOperation()
                     .getRowsNumberBeforeAddGood()
                     .addGood()
-                    .getRowsNumberAfterAddGood()
-                    .checkLastEntry()
-                    .removeLastEntry();
+                    .checkRowsNumberAfterAddGood()
+                    .checkLastEntryValues()
+                    .removeLastEntry()
+                    .checkRowsNumberAfterRemoveEntry()
+                    .checkEntryDeletionById();
         } catch (SQLException e) {
             e.printStackTrace();
         }
