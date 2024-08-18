@@ -3,6 +3,7 @@ package com.ibs.managers;
 import com.ibs.db.operations.AddGoodOperation;
 
 public class DBManager {
+    //TODO fix modifier
     public static DBManager dbManager;
     private AddGoodOperation addGoodOperation;
 
