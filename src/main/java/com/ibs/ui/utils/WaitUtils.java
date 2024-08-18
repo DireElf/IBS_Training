@@ -1,4 +1,4 @@
-package com.ibs.ui.pages.ui_utils;
+package com.ibs.ui.utils;
 
 import com.ibs.managers.DriverManager;
 import org.openqa.selenium.WebDriver;

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-import static com.ibs.ui.pages.ui_utils.WaitUtils.setExplicitlyWait;
+import static com.ibs.ui.utils.WaitUtils.setExplicitlyWait;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

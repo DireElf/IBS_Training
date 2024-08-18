@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.ibs.ui.pages.ui_utils.WaitUtils.setExplicitlyWait;
+import static com.ibs.ui.utils.WaitUtils.setExplicitlyWait;
 
 public class ModalWindow extends BasePage {
     @FindBy(xpath = "//h5[@class='modal-title']")
