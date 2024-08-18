@@ -50,4 +50,8 @@ public class BaseOperation {
         }
         return pStatement;
     }
+
+    public void closeConnection() throws SQLException {
+        connection.close();
+    }
 }

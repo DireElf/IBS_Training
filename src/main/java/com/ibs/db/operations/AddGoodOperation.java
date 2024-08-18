@@ -13,11 +13,11 @@ public class AddGoodOperation extends BaseOperation {
     //TODO aggregate test data from ui and db tests at one place
     //TODO insert javadoc
     private static final Good TEST_GOOD = new Good("Морковь", GoodType.VEGETABLE, false);
+
     private static final String SELECT_ALL = "SELECT * FROM FOOD";
     private static final String SELECT_ALL_ENTRIES_COUNT = "SELECT COUNT(*) AS rowsNumber FROM FOOD";
     private static final String ADD_NEW_GOOD
             = "INSERT INTO FOOD(FOOD_NAME, FOOD_TYPE, FOOD_EXOTIC) VALUES (?, ?, ?)";
-
     private static final String SELECT_ENTRY_BY_ID = "SELECT * FROM FOOD WHERE FOOD_ID = ?";
     private static final String DELETE_ENTRY_BY_ID = "DELETE FROM FOOD WHERE FOOD_ID = ?";
     private int dynamicRowsNumber;
@@ -72,9 +72,10 @@ public class AddGoodOperation extends BaseOperation {
         return this;
     }
 
-    public void checkEntryDeletionById() throws SQLException {
+    public AddGoodOperation checkEntryDeletionById() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ENTRY_BY_ID, lastEntryId);
         Assert.assertTrue(!resultSet.isBeforeFirst() && resultSet.getRow() == 0);
+        return this;
     }
 
     private Map<Integer, Good> getLastEntryFromFood() throws SQLException {

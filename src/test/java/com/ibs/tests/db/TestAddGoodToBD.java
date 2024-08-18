@@ -1,11 +1,12 @@
 package com.ibs.tests.db;
 
-import com.ibs.tests.db.base_test.BaseDBTest;
+import com.ibs.managers.DBManager;
 import org.junit.Test;
 
 import java.sql.SQLException;
 
-public class TestAddGoodToBD extends BaseDBTest {
+public class TestAddGoodToBD {
+    protected static DBManager dbManager = DBManager.getDBManager();
     @Test
     public void testAddNewGoodToFoodTable() {
         try {
@@ -16,7 +17,8 @@ public class TestAddGoodToBD extends BaseDBTest {
                     .checkLastEntryValues()
                     .removeLastEntry()
                     .checkRowsNumberAfterRemoveEntry()
-                    .checkEntryDeletionById();
+                    .checkEntryDeletionById()
+                    .closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
