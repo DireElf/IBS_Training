@@ -8,7 +8,6 @@ import java.sql.*;
 import static com.ibs.utils.PropConst.*;
 
 public class BaseOperation {
-    //TODO insert javadoc
     protected static PropManager propManager = PropManager.getPropManager();
 
     protected Connection connection = DBUtils.getConnection(
@@ -16,6 +15,14 @@ public class BaseOperation {
             propManager.getProperty(JDBC_H2_USER),
             propManager.getProperty(JDBC_H2_PASS));
 
+    /**
+     * Executes a SQL query and returns the result set.
+     *
+     * @param connection  the database connection to use
+     * @param queryString the SQL query string
+     * @param params      the parameters to set in the query
+     * @return the result set from the executed query
+     */
     public ResultSet makeQuery(Connection connection, String queryString, Object... params) {
         ResultSet resultSet = null;
         try {
@@ -27,6 +34,14 @@ public class BaseOperation {
         return resultSet;
     }
 
+    /**
+     * Executes a SQL update query and returns whether it was successful.
+     *
+     * @param connection  the database connection to use
+     * @param queryString the SQL update query string
+     * @param params      the parameters to set in the query
+     * @return true if the update was successful, false otherwise
+     */
     public boolean makeUpdateQuery(Connection connection, String queryString, Object... params) {
         try {
             PreparedStatement pStatement = getPreparedStatement(connection, queryString, params);
@@ -37,6 +52,14 @@ public class BaseOperation {
         return false;
     }
 
+    /**
+     * Creates a prepared statement with the specified query and parameters.
+     *
+     * @param connection  the database connection to use
+     * @param queryString the SQL query string
+     * @param params      the parameters to set in the query
+     * @return the prepared statement with the parameters set
+     */
     private PreparedStatement getPreparedStatement(Connection connection, String queryString, Object... params) {
         PreparedStatement pStatement = null;
         try {
@@ -51,6 +74,14 @@ public class BaseOperation {
         return pStatement;
     }
 
+    /**
+     * Sets the object in the prepared statement with the appropriate type.
+     *
+     * @param pStatement the prepared statement
+     * @param paramIndex the index of the parameter to set
+     * @param obj        the object to set in the statement
+     * @throws SQLException if a database access error occurs
+     */
     private void setObjectWithType(PreparedStatement pStatement, int paramIndex, Object obj) throws SQLException {
         if (obj instanceof String) {
             pStatement.setString(paramIndex, (String) obj);
@@ -61,7 +92,11 @@ public class BaseOperation {
         }
     }
 
-
+    /**
+     * Closes the database connection.
+     *
+     * @throws SQLException if a database access error occurs
+     */
     public void closeConnection() throws SQLException {
         connection.close();
     }
