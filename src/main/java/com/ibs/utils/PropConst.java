@@ -7,4 +7,5 @@ public class PropConst {
     public static final String JDBC_H2_URL = "jdbc.h2.url";
     public static final String JDBC_H2_USER = "jdbc.h2.user";
     public static final String JDBC_H2_PASS = "jdbc.h2.password";
+    public static final String PATH_TO_TEST_RESOURCES = "path.test.resources";
 }
