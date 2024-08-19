@@ -86,9 +86,9 @@ public class BaseOperation {
         if (obj instanceof String) {
             pStatement.setString(paramIndex, (String) obj);
         } else if (obj instanceof Integer) {
-            pStatement.setInt(paramIndex, ((Integer) obj).intValue());
+            pStatement.setInt(paramIndex, (Integer) obj);
         } else if (obj instanceof Boolean) {
-            pStatement.setBoolean(paramIndex, ((Boolean) obj).booleanValue());
+            pStatement.setBoolean(paramIndex, (Boolean) obj);
         }
     }
 

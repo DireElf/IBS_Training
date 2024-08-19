@@ -3,6 +3,7 @@ package com.ibs.db.operations;
 import com.ibs.db.operations.base_operation.BaseOperation;
 import com.ibs.models.Good;
 import com.ibs.models.enums.GoodType;
+import com.ibs.utils.TestDataUtils;
 import org.junit.Assert;
 
 import java.sql.ResultSet;
@@ -10,16 +11,15 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class AddGoodOperation extends BaseOperation {
-    //TODO aggregate test data from UI and DB tests at one place
-    private static final Good TEST_GOOD = new Good("Морковь", GoodType.VEGETABLE, false);
+    private static final Good TEST_GOOD = TestDataUtils.getGoodFromJsonFile("carrot.json");
 
     private static final String SELECT_ALL = "SELECT * FROM FOOD";
-    private static final String SELECT_ALL_ENTRIES_COUNT = "SELECT COUNT(*) AS rowsNumber FROM FOOD";
+    private static final String SELECT_ALL_ENTRIES_COUNT = "SELECT COUNT(*) FROM FOOD";
     private static final String ADD_NEW_GOOD
             = "INSERT INTO FOOD(FOOD_NAME, FOOD_TYPE, FOOD_EXOTIC) VALUES (?, ?, ?)";
     private static final String SELECT_ENTRY_BY_ID = "SELECT * FROM FOOD WHERE FOOD_ID = ?";
     private static final String DELETE_ENTRY_BY_ID = "DELETE FROM FOOD WHERE FOOD_ID = ?";
-    private int dynamicRowsNumber;
+    private int tableEntriesNumber;
     private int lastEntryId;
 
     /**
@@ -31,7 +31,7 @@ public class AddGoodOperation extends BaseOperation {
     public AddGoodOperation getRowsNumberBeforeAddGood() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
         resultSet.next();
-        dynamicRowsNumber = resultSet.getInt("rowsNumber");
+        tableEntriesNumber = resultSet.getInt("COUNT(*)");
         return this;
     }
 
@@ -58,8 +58,8 @@ public class AddGoodOperation extends BaseOperation {
     public AddGoodOperation checkRowsNumberAfterAddGood() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
         resultSet.next();
-        int rowsNumberAfterUpdate = resultSet.getInt("rowsNumber");
-        Assert.assertEquals("Incorrect rows number", ++dynamicRowsNumber, rowsNumberAfterUpdate);
+        int rowsNumberAfterUpdate = resultSet.getInt("COUNT(*)");
+        Assert.assertEquals("Incorrect rows number", ++tableEntriesNumber, rowsNumberAfterUpdate);
         return this;
     }
 
@@ -72,12 +72,13 @@ public class AddGoodOperation extends BaseOperation {
     public AddGoodOperation checkLastEntryValues() throws SQLException {
         Map<Integer, Good> lastEntry = getLastEntryFromFood();
         lastEntryId = lastEntry.keySet().stream().mapToInt(o -> o).findFirst().orElse(0);
+        Assert.assertTrue("ID is equal to 0", lastEntryId != 0);
         Good good = lastEntry.get(lastEntryId);
-        Assert.assertEquals("Name should be 'Морковь'",
-                "Морковь", good.getName());
-        Assert.assertEquals("Type should be 'Овощ'",
-                "Овощ", good.getType().getValue());
-        Assert.assertFalse("Boolean should be 'false'", good.isExotic());
+        Assert.assertEquals("Name should be " + TEST_GOOD.getName(),
+                TEST_GOOD.getName(), good.getName());
+        Assert.assertEquals("Type should be " + TEST_GOOD.getType().getValue(),
+                TEST_GOOD.getType().getValue(), good.getType().getValue());
+        Assert.assertFalse("Boolean should be " + TEST_GOOD.isExotic(), good.isExotic());
         return this;
     }
 
@@ -102,7 +103,7 @@ public class AddGoodOperation extends BaseOperation {
         ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
         resultSet.next();
         Assert.assertEquals("Incorrect rows number",
-                --dynamicRowsNumber, resultSet.getInt("rowsNumber"));
+                --tableEntriesNumber, resultSet.getInt("COUNT(*)"));
         return this;
     }
 
@@ -130,7 +131,8 @@ public class AddGoodOperation extends BaseOperation {
         int id = resultSet.getInt("FOOD_ID");
         Good good = new Good(
                 resultSet.getString("FOOD_NAME"),
-                resultSet.getString("FOOD_TYPE").equals("Овощ") ? GoodType.VEGETABLE : GoodType.FRUIT,
+                resultSet.getString("FOOD_TYPE")
+                        .equals(GoodType.VEGETABLE.getValue()) ? GoodType.VEGETABLE : GoodType.FRUIT,
                 resultSet.getBoolean("FOOD_EXOTIC")
         );
         return Map.of(id, good);
