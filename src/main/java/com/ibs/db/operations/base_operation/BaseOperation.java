@@ -43,13 +43,24 @@ public class BaseOperation {
             pStatement = connection.prepareStatement(queryString);
             int paramIndex = 1;
             for (int i = 0; i < params.length; i++) {
-                pStatement.setObject(paramIndex++, params[i]);
+                setObjectWithType(pStatement, paramIndex++, params[i]);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return pStatement;
     }
+
+    private void setObjectWithType(PreparedStatement pStatement, int paramIndex, Object obj) throws SQLException {
+        if (obj instanceof String) {
+            pStatement.setString(paramIndex, (String) obj);
+        } else if (obj instanceof Integer) {
+            pStatement.setInt(paramIndex, ((Integer) obj).intValue());
+        } else if (obj instanceof Boolean) {
+            pStatement.setBoolean(paramIndex, ((Boolean) obj).booleanValue());
+        }
+    }
+
 
     public void closeConnection() throws SQLException {
         connection.close();
