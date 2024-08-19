@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class FoodPage extends BasePage {
-
     @FindBy(tagName = "h5")
     private WebElement tableHeader;
     @FindBy(tagName = "table")

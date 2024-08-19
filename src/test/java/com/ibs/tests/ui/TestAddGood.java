@@ -3,11 +3,12 @@ package com.ibs.tests.ui;
 import com.ibs.models.Good;
 import com.ibs.models.enums.GoodType;
 import com.ibs.tests.ui.base_test.BaseTest;
+import com.ibs.utils.TestDataUtils;
 import org.junit.Test;
 
 public class TestAddGood extends BaseTest {
-    private final Good fruitExotic = new Good("Ананас", GoodType.FRUIT, true);
-    private final Good vegetableNonExotic = new Good("Морковь", GoodType.VEGETABLE, false);
+    private final Good fruitExotic = TestDataUtils.getGoodFromJsonFile("pineapple.json");
+    private final Good vegetableNonExotic = TestDataUtils.getGoodFromJsonFile("carrot.json");
 
     @Test
     public void testAddFruitExotic() {
