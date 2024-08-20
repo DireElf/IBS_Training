@@ -83,19 +83,23 @@ public class FoodPage extends BasePage {
     }
 
     /**
-     * Validates the content of the last row in the table to ensure the added item's details are correct.
-     * @param good the Good object representing the expected data of the last row
-     * @return the current FoodPage instance
+     * Verifies the content of the last row in a table based on the provided parameters.
+     *
+     * @param goodName the expected name of the good in the last row.
+     * @param goodType the expected type of the good in the last row.
+     * @param isExotic the expected exotic status of the good in the last row.
+     * @return the current instance of the FoodPage.
+     * @throws AssertionError if the content of the last row does not match the provided parameters.
      */
-    public FoodPage checkLastRowContent(Good good) {
+    public FoodPage checkLastRowContent(String goodName, String goodType, boolean isExotic) {
         By lastAddedRowXpath = By
                 .xpath(
                         "//th[@scope='row' and text()='" + tableRowsCount +"']/following-sibling::td"
                 );
         List<WebElement> rowContent = driverManager.getWebDriver().findElements(lastAddedRowXpath);
-        Assert.assertEquals("Good name isn't valid", good.getName(), rowContent.get(0).getText());
-        Assert.assertEquals("Good type isn't valid", good.getType().getValue(), rowContent.get(1).getText());
-        Assert.assertEquals("Exotic type isn't valid", good.isExotic(),
+        Assert.assertEquals("Good name isn't valid", goodName, rowContent.get(0).getText());
+        Assert.assertEquals("Good type isn't valid", goodType, rowContent.get(1).getText());
+        Assert.assertEquals("Exotic type isn't valid", isExotic,
                 Boolean.valueOf(rowContent.get(2).getText()));
         return this;
     }

@@ -1,7 +1,9 @@
 package com.ibs.tests.db;
 
 import com.ibs.managers.DBManager;
+import io.cucumber.junit.Cucumber;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.sql.SQLException;
 

@@ -21,12 +21,14 @@ public class TestAddGood extends BaseTest {
                 .clickButtonAdd()
                 .checkModalWindowIsDisplayed()
                 .checkModalWindowElementsPresence()
-                .fillGoodName(fruitExotic)
-                .selectType(fruitExotic)
-                .selectCheckBoxExotic(fruitExotic)
+                .fillGoodName(fruitExotic.getName())
+                .selectType(fruitExotic.getType().getValue())
+                .selectCheckBoxExotic(fruitExotic.isExotic())
                 .saveNewGood()
                 .checkIfGoodAdded()
-                .checkLastRowContent(fruitExotic);
+                .checkLastRowContent(fruitExotic.getName(),
+                                     fruitExotic.getType().getValue(),
+                                     fruitExotic.isExotic());
 
     }
 
@@ -41,11 +43,13 @@ public class TestAddGood extends BaseTest {
                 .clickButtonAdd()
                 .checkModalWindowIsDisplayed()
                 .checkModalWindowElementsPresence()
-                .fillGoodName(vegetableNonExotic)
-                .selectType(vegetableNonExotic)
-                .selectCheckBoxExotic(vegetableNonExotic)
+                .fillGoodName(vegetableNonExotic.getName())
+                .selectType(vegetableNonExotic.getType().getValue())
+                .selectCheckBoxExotic(vegetableNonExotic.isExotic())
                 .saveNewGood()
                 .checkIfGoodAdded()
-                .checkLastRowContent(vegetableNonExotic);
+                .checkLastRowContent(vegetableNonExotic.getName(),
+                                     vegetableNonExotic.getType().getValue(),
+                                     vegetableNonExotic.isExotic());
     }
 }

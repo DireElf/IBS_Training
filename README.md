@@ -17,3 +17,11 @@ mvn test -Dtest=TestAddGood
 mvn test -Dtest=TestAddGoodToBD
 ```
 ***
+
+#### Практическое задание №4: тестирование UI с Cucumber ####
+
+Для запуска шагов Cucumber выполнить в директории проекта команду
+```
+mvn test -Dtest=RunnerTest     
+```
+***

@@ -52,23 +52,23 @@ public class ModalWindow extends BasePage {
 
     /**
      * Fills in the name of the good in the modal window's input field.
-     * @param good the Good object containing the name to be entered
+     * @param name the name to be entered
      * @return the current ModalWindow instance
      */
-    public ModalWindow fillGoodName(Good good) {
-        nameInputField.sendKeys(good.getName());
+    public ModalWindow fillGoodName(String name) {
+        nameInputField.sendKeys(name);
         return this;
     }
 
     /**
      * Selects the type of good from the dropdown menu in the modal window.
-     * @param good the Good object containing the type to be selected
+     * @param type the type to be selected
      * @return the current ModalWindow instance
      */
-    public ModalWindow selectType(Good good) {
+    public ModalWindow selectType(String type) {
         goodTypeDropdown.click();
         WebElement selectedElement = goodTypeDropdown.findElement(By.xpath(
-                "//select[@id='type']/option[text()='" + good.getType().getValue() + "']"
+                "//select[@id='type']/option[text()='" + type + "']"
         ));
         setExplicitlyWait(5L).until(ExpectedConditions.elementToBeClickable(selectedElement));
         selectedElement.click();
@@ -77,12 +77,12 @@ public class ModalWindow extends BasePage {
 
     /**
      * Selects the "Exotic" checkbox if the good is exotic, ensuring it's selected correctly.
-     * @param good the Good object containing the exotic status
+     * @param shouldBeExotic the exotic status
      * @return the current ModalWindow instance
      */
-    public ModalWindow selectCheckBoxExotic(Good good) {
+    public ModalWindow selectCheckBoxExotic(Boolean shouldBeExotic) {
         Assert.assertFalse("Checkbox 'Экзотический' is selected already", checkBoxIsExotic.isSelected());
-        if (good.isExotic()) {
+        if (shouldBeExotic) {
             checkBoxIsExotic.click();
             Assert.assertTrue("Checkbox 'Экзотический' isn't selected", checkBoxIsExotic.isSelected());
         }
