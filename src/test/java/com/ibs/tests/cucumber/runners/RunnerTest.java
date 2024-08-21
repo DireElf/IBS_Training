@@ -10,8 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = {
         "src/test/resources/features/add-good-by-ui.feature",
         "src/test/resources/features/add-good-to-db.feature"},
-        glue = "com/ibs/tests/cucumber/steps",
-        tags = "@test-by-UI")
+        glue = "com/ibs/tests/cucumber/steps")
 public class RunnerTest {
     @AfterClass
     public static void tearDown() {
