@@ -1,8 +1,8 @@
 package com.ibs.ui.pages;
 
 import com.ibs.managers.PageManager;
-import com.ibs.models.Good;
 import com.ibs.ui.pages.base_page.BasePage;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -42,6 +42,7 @@ public class FoodPage extends BasePage {
      * Checks if the Food page is open by verifying the visibility of the table header.
      * @return the current FoodPage instance
      */
+    @Step
     public FoodPage checkFoodPageIsOpen() {
         assertTrue("Page /food isn't displayed", tableHeader.isDisplayed());
         return this;
@@ -51,6 +52,7 @@ public class FoodPage extends BasePage {
      * Validates the presence and correctness of the table columns on the Food page.
      * @return the current FoodPage instance
      */
+    @Step
     public FoodPage checkTableColumnsNames() {
         assertTrue("Goods table isn't displayed", table.isDisplayed());
         assertEquals("Наименование", goodName.getText());
@@ -63,6 +65,7 @@ public class FoodPage extends BasePage {
      * Clicks the "Add" button to open a modal window for adding a new item.
      * @return the ModalWindow instance representing the modal dialog
      */
+    @Step
     public ModalWindow clickButtonAdd() {
         tableRowsCount = tableRowsNumbers.size();
         assertTrue("Button 'Добавить' isn't displayed", buttonAdd.isDisplayed());
@@ -75,6 +78,7 @@ public class FoodPage extends BasePage {
      * Checks if a new item has been added to the table by comparing the row count before and after refresh.
      * @return the current FoodPage instance
      */
+    @Step
     public FoodPage checkIfGoodAdded() {
         driverManager.getWebDriver().navigate().refresh();
         setExplicitlyWait(5L).until(ExpectedConditions.visibilityOf(table));
@@ -91,6 +95,7 @@ public class FoodPage extends BasePage {
      * @return the current instance of the FoodPage.
      * @throws AssertionError if the content of the last row does not match the provided parameters.
      */
+    @Step
     public FoodPage checkLastRowContent(String goodName, String goodType, boolean isExotic) {
         By lastAddedRowXpath = By
                 .xpath(

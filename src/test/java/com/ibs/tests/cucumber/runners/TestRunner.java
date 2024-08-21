@@ -7,11 +7,11 @@ import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = {
-        "src/test/resources/features/add-good-by-ui.feature",
-        "src/test/resources/features/add-good-to-db.feature"},
+@CucumberOptions(plugin = {"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
+        features = {"src/test/resources/features/add-good-by-ui.feature",
+                "src/test/resources/features/add-good-to-db.feature"},
         glue = "com/ibs/tests/cucumber/steps")
-public class RunnerTest {
+public class TestRunner {
     @AfterClass
     public static void tearDown() {
         DriverManager.getDriverManager().quitWebDriver();

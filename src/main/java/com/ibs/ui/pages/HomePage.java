@@ -1,6 +1,7 @@
 package com.ibs.ui.pages;
 
 import com.ibs.ui.pages.base_page.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,6 +19,7 @@ public class HomePage extends BasePage {
      * Checks if the Home page is open by verifying the visibility of the title.
      * @return the current HomePage instance
      */
+    @Step
     public HomePage checkHomePageIsOpen() {
         assertTrue("Home page isn't open", homePageTitle.isDisplayed());
         return this;
@@ -27,6 +29,7 @@ public class HomePage extends BasePage {
      * Clicks on the sandbox dropdown to reveal its items.
      * @return the current HomePage instance
      */
+    @Step
     public HomePage clickSandBoxDropdown() {
         assertTrue("Dropdown 'Песочница' isn't available", sandboxDropdown.isDisplayed());
         sandboxDropdown.click();
@@ -37,6 +40,7 @@ public class HomePage extends BasePage {
      * Clicks on the 'Goods' item in the dropdown menu to navigate to the Food page.
      * @return the FoodPage instance representing the Food page
      */
+    @Step
     public FoodPage clickDropdownItemGoods() {
         assertTrue("Dropdown item 'Товары' isn't available", dropdownItemGoods.isDisplayed());
         dropdownItemGoods.click();

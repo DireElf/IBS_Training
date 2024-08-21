@@ -4,6 +4,7 @@ import com.ibs.db.operations.base_operation.BaseOperation;
 import com.ibs.models.Good;
 import com.ibs.models.enums.GoodType;
 import com.ibs.utils.TestDataUtils;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import java.sql.ResultSet;
@@ -28,6 +29,7 @@ public class AddGoodOperation extends BaseOperation {
      * @return the current instance of AddGoodOperation
      * @throws SQLException if a database access error occurs
      */
+    @Step
     public AddGoodOperation getRowsNumberBeforeAddGood() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
         resultSet.next();
@@ -40,6 +42,7 @@ public class AddGoodOperation extends BaseOperation {
      *
      * @return the current instance of AddGoodOperation
      */
+    @Step
     public AddGoodOperation addGood() {
         Assert.assertTrue("The good wasn't added",
                 makeUpdateQuery(connection, ADD_NEW_GOOD,
@@ -55,6 +58,7 @@ public class AddGoodOperation extends BaseOperation {
      * @return the current instance of AddGoodOperation
      * @throws SQLException if a database access error occurs
      */
+    @Step
     public AddGoodOperation checkRowsNumberAfterAddGood() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
         resultSet.next();
@@ -69,6 +73,7 @@ public class AddGoodOperation extends BaseOperation {
      * @return the current instance of AddGoodOperation
      * @throws SQLException if a database access error occurs
      */
+    @Step
     public AddGoodOperation checkLastEntryValues() throws SQLException {
         Map<Integer, Good> lastEntry = getLastEntryFromFood();
         lastEntryId = lastEntry.keySet().stream().mapToInt(o -> o).findFirst().orElse(0);
@@ -88,6 +93,7 @@ public class AddGoodOperation extends BaseOperation {
      * @return the current instance of AddGoodOperation
      * @throws SQLException if a database access error occurs
      */
+    @Step
     public AddGoodOperation removeLastEntry() throws SQLException {
         makeUpdateQuery(connection, DELETE_ENTRY_BY_ID, lastEntryId);
         return this;
@@ -99,6 +105,7 @@ public class AddGoodOperation extends BaseOperation {
      * @return the current instance of AddGoodOperation
      * @throws SQLException if a database access error occurs
      */
+    @Step
     public AddGoodOperation checkRowsNumberAfterRemoveEntry() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
         resultSet.next();
@@ -113,6 +120,7 @@ public class AddGoodOperation extends BaseOperation {
      * @return the current instance of AddGoodOperation
      * @throws SQLException if a database access error occurs
      */
+    @Step
     public AddGoodOperation checkEntryDeletionById() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ENTRY_BY_ID, lastEntryId);
         Assert.assertTrue(!resultSet.isBeforeFirst() && resultSet.getRow() == 0);
@@ -125,6 +133,7 @@ public class AddGoodOperation extends BaseOperation {
      * @return a map containing the ID of the last entry and the corresponding Good object
      * @throws SQLException if a database access error occurs
      */
+    @Step
     private Map<Integer, Good> getLastEntryFromFood() throws SQLException {
         ResultSet resultSet = makeQuery(connection, SELECT_ALL);
         resultSet.last();

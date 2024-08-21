@@ -30,7 +30,13 @@ mvn test -Dtest=TestAddGoodToBD
 Код можно найти в 'src/test/java/com/ibs/tests/cucumber'. Инициализация раннера, запускающего Cucumber-тесты:
 
 ```bash
-mvn test -Dtest=RunnerTest  
+mvn test -Dtest=TestRunner
+```
+---
+
+_Просмотреть отчет Allure после выполнения тестов:_
+```bash
+mvn allure:serve
 ```
 
 

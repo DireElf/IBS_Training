@@ -2,6 +2,7 @@ package com.ibs.ui.pages;
 
 import com.ibs.models.Good;
 import com.ibs.ui.pages.base_page.BasePage;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,7 @@ public class ModalWindow extends BasePage {
      * Checks if the modal window is displayed by verifying the visibility of its title.
      * @return the current ModalWindow instance
      */
+    @Step
     public ModalWindow checkModalWindowIsDisplayed() {
         Assert.assertTrue("Modal window isn't displayed", modalWindowTitle.isDisplayed());
         return this;
@@ -42,6 +44,7 @@ public class ModalWindow extends BasePage {
      * Validates the presence of all essential elements within the modal window.
      * @return the current ModalWindow instance
      */
+    @Step
     public ModalWindow checkModalWindowElementsPresence() {
         Assert.assertTrue("Name input field isn't displayed", nameInputField.isDisplayed());
         Assert.assertTrue("Good type dropdown isn't displayed", goodTypeDropdown.isDisplayed());
@@ -55,6 +58,7 @@ public class ModalWindow extends BasePage {
      * @param name the name to be entered
      * @return the current ModalWindow instance
      */
+    @Step
     public ModalWindow fillGoodName(String name) {
         nameInputField.sendKeys(name);
         return this;
@@ -65,6 +69,7 @@ public class ModalWindow extends BasePage {
      * @param type the type to be selected
      * @return the current ModalWindow instance
      */
+    @Step
     public ModalWindow selectType(String type) {
         goodTypeDropdown.click();
         WebElement selectedElement = goodTypeDropdown.findElement(By.xpath(
@@ -80,6 +85,7 @@ public class ModalWindow extends BasePage {
      * @param shouldBeExotic the exotic status
      * @return the current ModalWindow instance
      */
+    @Step
     public ModalWindow selectCheckBoxExotic(Boolean shouldBeExotic) {
         Assert.assertFalse("Checkbox 'Экзотический' is selected already", checkBoxIsExotic.isSelected());
         if (shouldBeExotic) {
@@ -93,6 +99,7 @@ public class ModalWindow extends BasePage {
      * Saves the new good by clicking the "Save" button and waits for the modal window to close.
      * @return the FoodPage instance representing the Food page
      */
+    @Step
     public FoodPage saveNewGood() {
         buttonSave.click();
         setExplicitlyWait(5L).until(ExpectedConditions.invisibilityOf(modalContent));
