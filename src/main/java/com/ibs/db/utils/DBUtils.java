@@ -12,7 +12,7 @@ public class DBUtils {
      * @return a {@link Connection} object representing the established connection to the database,
      *         or {@code null} if a connection could not be established due to a {@link SQLException}
      */
-    public static Connection getConnection(String url, String user, String pass) {
+    public static Connection createConnection(String url, String user, String pass) {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, pass);

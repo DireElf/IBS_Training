@@ -1,10 +1,12 @@
 package com.ibs.managers;
 
 import com.ibs.db.operations.AddGoodOperation;
+import com.ibs.db.operations.RemoveGoodOperation;
 
 public class DBManager {
     private static DBManager dbManager;
     private AddGoodOperation addGoodOperation;
+    private RemoveGoodOperation removeGoodOperation;
 
     // Private constructor to prevent direct instantiation
     private DBManager() {}
@@ -33,5 +35,18 @@ public class DBManager {
             addGoodOperation = new AddGoodOperation();
         }
         return addGoodOperation;
+    }
+
+    /**
+     * Returns an instance of RemoveGoodOperation.
+     * If it doesn't exist, creates a new instance.
+     *
+     * @return an instance of RemoveGoodOperation
+     */
+    public RemoveGoodOperation getRemoveGoodOperation() {
+        if (removeGoodOperation == null) {
+            removeGoodOperation = new RemoveGoodOperation();
+        }
+        return removeGoodOperation;
     }
 }

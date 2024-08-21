@@ -1,7 +1,6 @@
 package com.ibs.tests.ui;
 
 import com.ibs.models.Good;
-import com.ibs.models.enums.GoodType;
 import com.ibs.tests.ui.base_test.BaseTest;
 import com.ibs.utils.TestDataUtils;
 import org.junit.Test;

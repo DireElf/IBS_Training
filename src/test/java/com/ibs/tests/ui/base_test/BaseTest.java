@@ -3,6 +3,7 @@ package com.ibs.tests.ui.base_test;
 import com.ibs.managers.DriverManager;
 import com.ibs.managers.PageManager;
 import com.ibs.managers.PropManager;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -33,8 +34,8 @@ public class BaseTest {
         driverManager.getWebDriver().get(PropManager.getPropManager().getProperty(TEST_APP_URL));
     }
 
-    @AfterClass
-    public static void afterAll() {
-        driverManager.quitWebDriver();
-    }
+//    @After
+//    public void afterEach() {
+//        driverManager.getWebDriver().close();
+//    }
 }

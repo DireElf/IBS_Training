@@ -1,26 +1,24 @@
 package com.ibs.tests.db;
 
 import com.ibs.managers.DBManager;
-import io.cucumber.junit.Cucumber;
+import com.ibs.models.Good;
+import com.ibs.tests.db.base_test.BaseTest;
+import com.ibs.utils.TestDataUtils;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.sql.SQLException;
 
-public class TestAddGoodToBD {
+public class TestAddGoodByJDBC extends BaseTest {
     protected static DBManager dbManager = DBManager.getDBManager();
+    private static final Good TEST_GOOD = TestDataUtils.getGoodFromJsonFile("carrot.json");
     @Test
     public void testAddNewGoodToFoodTable() {
         try {
             dbManager.getAddGoodOperation()
                     .getRowsNumberBeforeAddGood()
-                    .addGood()
+                    .addGood(TEST_GOOD.getName(), TEST_GOOD.getType().getValue(), TEST_GOOD.isExotic())
                     .checkRowsNumberAfterAddGood()
-                    .checkLastEntryValues()
-                    .removeLastEntry()
-                    .checkRowsNumberAfterRemoveEntry()
-                    .checkEntryDeletionById()
-                    .closeConnection();
+                    .checkLastEntryValues(TEST_GOOD.getName(), TEST_GOOD.getType().getValue(), TEST_GOOD.isExotic());
         } catch (SQLException e) {
             e.printStackTrace();
         }

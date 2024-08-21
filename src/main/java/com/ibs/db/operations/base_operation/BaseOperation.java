@@ -10,10 +10,17 @@ import static com.ibs.utils.PropConst.*;
 public class BaseOperation {
     protected static PropManager propManager = PropManager.getPropManager();
 
-    protected Connection connection = DBUtils.getConnection(
+    protected Connection connection = DBUtils.createConnection(
             propManager.getProperty(JDBC_H2_URL),
             propManager.getProperty(JDBC_H2_USER),
             propManager.getProperty(JDBC_H2_PASS));
+
+    protected static int tableEntriesNumber;
+    protected static int lastEntryId;
+
+    public static final String SELECT_ALL = "SELECT * FROM FOOD";
+    public static final String SELECT_ALL_ENTRIES_COUNT = "SELECT COUNT(*) FROM FOOD";
+    public static final String SELECT_ENTRY_BY_ID = "SELECT * FROM FOOD WHERE FOOD_ID = ?";
 
     /**
      * Executes a SQL query and returns the result set.
@@ -90,6 +97,12 @@ public class BaseOperation {
         } else if (obj instanceof Boolean) {
             pStatement.setBoolean(paramIndex, (Boolean) obj);
         }
+    }
+
+    public int getCurrentEntriesCount() throws SQLException {
+        ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
+        resultSet.next();
+        return resultSet.getInt("COUNT(*)");
     }
 
     /**
