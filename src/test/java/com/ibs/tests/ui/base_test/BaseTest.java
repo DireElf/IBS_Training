@@ -17,7 +17,7 @@ public class BaseTest {
     private static final PropManager propManager = PropManager.getPropManager();
 
     @BeforeClass
-    public static void BeforeAll() {
+    public static void beforeAll() {
         driverManager.getWebDriver().manage().timeouts()
                 .implicitlyWait(
                         (Duration.ofSeconds
@@ -29,7 +29,7 @@ public class BaseTest {
     }
 
     @Before
-    public void BeforeEach() {
+    public void beforeEach() {
         driverManager.getWebDriver().get(PropManager.getPropManager().getProperty(TEST_APP_URL));
     }
 
