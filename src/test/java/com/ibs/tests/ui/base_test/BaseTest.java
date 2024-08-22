@@ -3,13 +3,12 @@ package com.ibs.tests.ui.base_test;
 import com.ibs.managers.DriverManager;
 import com.ibs.managers.PageManager;
 import com.ibs.managers.PropManager;
+import com.ibs.utils.WebDriverUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import java.time.Duration;
-
-import static com.ibs.utils.PropConst.*;
+import static com.ibs.utils.constants.PropConst.*;
 
 public class BaseTest {
     protected final PageManager pageManager = PageManager.getPageManager();
@@ -18,14 +17,11 @@ public class BaseTest {
 
     @BeforeClass
     public static void beforeAll() {
-        driverManager.getWebDriver().manage().timeouts()
-                .implicitlyWait(
-                        (Duration.ofSeconds
-                                (Long.parseLong(propManager.getProperty(IMPLICITLY_WAIT)))));
-        driverManager.getWebDriver().manage().timeouts()
-                .pageLoadTimeout(
-                        (Duration.ofSeconds
-                                (Long.parseLong(propManager.getProperty(PAGE_LOAD_TIMEOUT)))));
+        WebDriverUtils.setWebDriverOptions(
+                driverManager.getWebDriver(),
+                Long.parseLong(propManager.getProperty(IMPLICITLY_WAIT)),
+                Long.parseLong(propManager.getProperty(PAGE_LOAD_TIMEOUT))
+        );
     }
 
     @Before

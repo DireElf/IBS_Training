@@ -1,6 +1,6 @@
 package com.ibs.tests.cucumber.steps;
 
-import com.ibs.db.operations.AddGoodOperation;
+import com.ibs.db.AddGoodOperation;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

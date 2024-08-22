@@ -1,8 +1,8 @@
 package com.ibs.managers;
 
-import com.ibs.ui.pages.FoodPage;
-import com.ibs.ui.pages.ModalWindow;
-import com.ibs.ui.pages.HomePage;
+import com.ibs.ui.FoodPage;
+import com.ibs.ui.ModalWindow;
+import com.ibs.ui.HomePage;
 
 public class PageManager {
     private static PageManager pageManager;

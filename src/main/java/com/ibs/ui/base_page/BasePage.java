@@ -1,4 +1,4 @@
-package com.ibs.ui.pages.base_page;
+package com.ibs.ui.base_page;
 
 import com.ibs.managers.DriverManager;
 import com.ibs.managers.PageManager;

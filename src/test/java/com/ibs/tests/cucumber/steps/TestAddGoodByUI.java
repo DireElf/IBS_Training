@@ -1,16 +1,12 @@
 package com.ibs.tests.cucumber.steps;
 
-import com.ibs.managers.DriverManager;
 import com.ibs.managers.PageManager;
-import com.ibs.managers.PropManager;
-import com.ibs.ui.pages.FoodPage;
-import com.ibs.ui.pages.HomePage;
-import com.ibs.ui.pages.ModalWindow;
+import com.ibs.ui.FoodPage;
+import com.ibs.ui.HomePage;
+import com.ibs.ui.ModalWindow;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import static com.ibs.utils.PropConst.TEST_APP_URL;
 
 public class TestAddGoodByUI {
     private final HomePage homePage = PageManager.getPageManager().getHomePage();

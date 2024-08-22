@@ -1,4 +1,4 @@
-package com.ibs.db.utils;
+package com.ibs.utils;
 
 import com.ibs.models.enums.GoodType;
 

@@ -1,12 +1,12 @@
-package com.ibs.db.operations.base_operation;
+package com.ibs.db.base_operation;
 
-import com.ibs.db.utils.DBUtils;
+import com.ibs.utils.DBUtils;
 import com.ibs.managers.PropManager;
 
 import java.sql.*;
 
-import static com.ibs.db.utils.Queries.SELECT_ALL_ENTRIES_COUNT;
-import static com.ibs.utils.PropConst.*;
+import static com.ibs.utils.constants.QueriesConst.SELECT_ALL_ENTRIES_COUNT;
+import static com.ibs.utils.constants.PropConst.*;
 
 public class BaseOperation {
     protected static PropManager propManager = PropManager.getPropManager();

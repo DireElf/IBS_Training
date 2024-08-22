@@ -1,7 +1,6 @@
-package com.ibs.ui.pages;
+package com.ibs.ui;
 
-import com.ibs.models.Good;
-import com.ibs.ui.pages.base_page.BasePage;
+import com.ibs.ui.base_page.BasePage;
 import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -9,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.ibs.ui.utils.WaitUtils.setExplicitlyWait;
+import static com.ibs.utils.WebDriverUtils.setExplicitlyWait;
 
 public class ModalWindow extends BasePage {
     @FindBy(xpath = "//h5[@class='modal-title']")

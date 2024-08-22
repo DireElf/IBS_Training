@@ -1,7 +1,7 @@
-package com.ibs.ui.pages;
+package com.ibs.ui;
 
 import com.ibs.managers.PageManager;
-import com.ibs.ui.pages.base_page.BasePage;
+import com.ibs.ui.base_page.BasePage;
 import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-import static com.ibs.ui.utils.WaitUtils.setExplicitlyWait;
+import static com.ibs.utils.WebDriverUtils.setExplicitlyWait;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

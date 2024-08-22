@@ -1,6 +1,6 @@
-package com.ibs.ui.pages;
+package com.ibs.ui;
 
-import com.ibs.ui.pages.base_page.BasePage;
+import com.ibs.ui.base_page.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

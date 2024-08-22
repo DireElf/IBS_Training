@@ -1,7 +1,7 @@
-package com.ibs.db.operations;
+package com.ibs.db;
 
-import com.ibs.db.operations.base_operation.BaseOperation;
-import com.ibs.db.utils.DBUtils;
+import com.ibs.db.base_operation.BaseOperation;
+import com.ibs.utils.DBUtils;
 import com.ibs.models.Good;
 import io.qameta.allure.Step;
 import org.junit.Assert;
@@ -10,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
-import static com.ibs.db.utils.Queries.ADD_NEW_GOOD;
-import static com.ibs.db.utils.Queries.SELECT_ALL;
+import static com.ibs.utils.constants.QueriesConst.ADD_NEW_GOOD;
+import static com.ibs.utils.constants.QueriesConst.SELECT_ALL;
 
 public class AddGoodOperation extends BaseOperation {
 

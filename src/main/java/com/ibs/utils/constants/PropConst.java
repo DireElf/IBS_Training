@@ -1,4 +1,4 @@
-package com.ibs.utils;
+package com.ibs.utils.constants;
 
 public class PropConst {
     public static final String TEST_APP_URL = "test.app.url";

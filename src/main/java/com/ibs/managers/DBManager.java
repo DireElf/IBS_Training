@@ -1,7 +1,7 @@
 package com.ibs.managers;
 
-import com.ibs.db.operations.AddGoodOperation;
-import com.ibs.db.operations.RemoveGoodOperation;
+import com.ibs.db.AddGoodOperation;
+import com.ibs.db.RemoveGoodOperation;
 
 public class DBManager {
     private static DBManager dbManager;

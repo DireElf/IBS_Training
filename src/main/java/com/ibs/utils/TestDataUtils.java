@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static com.ibs.utils.PropConst.PATH_TO_TEST_RESOURCES;
+import static com.ibs.utils.constants.PropConst.PATH_TO_TEST_RESOURCES;
 
 public class TestDataUtils {
     private static final PropManager propManager = PropManager.getPropManager();

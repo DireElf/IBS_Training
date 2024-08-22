@@ -1,13 +1,13 @@
-package com.ibs.db.operations;
+package com.ibs.db;
 
-import com.ibs.db.operations.base_operation.BaseOperation;
+import com.ibs.db.base_operation.BaseOperation;
 import org.junit.Assert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.ibs.db.utils.Queries.DELETE_ENTRY_BY_ID;
-import static com.ibs.db.utils.Queries.SELECT_ENTRY_BY_ID;
+import static com.ibs.utils.constants.QueriesConst.DELETE_ENTRY_BY_ID;
+import static com.ibs.utils.constants.QueriesConst.SELECT_ENTRY_BY_ID;
 
 public class RemoveGoodOperation extends BaseOperation {
 
