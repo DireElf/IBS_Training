@@ -5,6 +5,7 @@ import com.ibs.managers.PropManager;
 
 import java.sql.*;
 
+import static com.ibs.db.utils.Queries.SELECT_ALL_ENTRIES_COUNT;
 import static com.ibs.utils.PropConst.*;
 
 public class BaseOperation {
@@ -17,10 +18,6 @@ public class BaseOperation {
 
     protected static int tableEntriesNumber;
     protected static int lastEntryId;
-
-    public static final String SELECT_ALL = "SELECT * FROM FOOD";
-    public static final String SELECT_ALL_ENTRIES_COUNT = "SELECT COUNT(*) FROM FOOD";
-    public static final String SELECT_ENTRY_BY_ID = "SELECT * FROM FOOD WHERE FOOD_ID = ?";
 
     /**
      * Executes a SQL query and returns the result set.

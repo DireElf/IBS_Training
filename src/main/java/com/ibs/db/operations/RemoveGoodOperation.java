@@ -6,8 +6,11 @@ import org.junit.Assert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.ibs.db.utils.Queries.DELETE_ENTRY_BY_ID;
+import static com.ibs.db.utils.Queries.SELECT_ENTRY_BY_ID;
+
 public class RemoveGoodOperation extends BaseOperation {
-    public static final String DELETE_ENTRY_BY_ID = "DELETE FROM FOOD WHERE FOOD_ID = ?";
+
     /**
      * Removes the last entry added to the FOOD table.
      *

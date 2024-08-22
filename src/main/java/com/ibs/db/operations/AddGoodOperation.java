@@ -11,9 +11,10 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
 
+import static com.ibs.db.utils.Queries.ADD_NEW_GOOD;
+import static com.ibs.db.utils.Queries.SELECT_ALL;
+
 public class AddGoodOperation extends BaseOperation {
-    public static final String ADD_NEW_GOOD
-            = "INSERT INTO FOOD(FOOD_NAME, FOOD_TYPE, FOOD_EXOTIC) VALUES (?, ?, ?)";
 
     /**
      * Retrieves and stores the number of rows in the FOOD table before adding a new good.
