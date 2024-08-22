@@ -96,10 +96,17 @@ public class BaseOperation {
         }
     }
 
+    /**
+     * Retrieves the current count of entries from the database.
+     *
+     * @return the total number of entries as an integer.
+     * @throws SQLException if a database access error occurs or the query fails.
+     */
     public int getCurrentEntriesCount() throws SQLException {
+        final String columnLabel = "COUNT(*)";
         ResultSet resultSet = makeQuery(connection, SELECT_ALL_ENTRIES_COUNT);
         resultSet.next();
-        return resultSet.getInt("COUNT(*)");
+        return resultSet.getInt(columnLabel);
     }
 
     /**
@@ -108,6 +115,6 @@ public class BaseOperation {
      * @throws SQLException if a database access error occurs
      */
     public void closeConnection() throws SQLException {
-        connection.close();
+        DBUtils.closeConnection(connection);
     }
 }

@@ -1,6 +1,10 @@
 package com.ibs.db.utils;
 
+import com.ibs.models.enums.GoodType;
+
 import java.sql.*;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class DBUtils {
     /**
@@ -20,5 +24,29 @@ public class DBUtils {
             e.printStackTrace();
         }
         return connection;
+    }
+
+    /**
+     * Finds and returns the {@link GoodType} corresponding to the specified value.
+     *
+     * @param value the string value to match against the {@link GoodType} values.
+     * @return the corresponding {@link GoodType} if found.
+     * @throws NoSuchElementException if no matching {@link GoodType} is found.
+     */
+    public static GoodType getGoodType(String value) {
+        GoodType[] types = GoodType.values();
+        return Arrays.stream(types)
+                .filter(o -> o.getValue().equals(value))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    /**
+     * Closes the database connection.
+     *
+     * @throws SQLException if a database access error occurs
+     */
+    public static void closeConnection(Connection connection) throws SQLException {
+        connection.close();
     }
 }

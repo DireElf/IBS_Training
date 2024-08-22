@@ -1,14 +1,13 @@
 package com.ibs.db.operations;
 
 import com.ibs.db.operations.base_operation.BaseOperation;
+import com.ibs.db.utils.DBUtils;
 import com.ibs.models.Good;
-import com.ibs.models.enums.GoodType;
 import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Map;
 
 import static com.ibs.db.utils.Queries.ADD_NEW_GOOD;
@@ -85,17 +84,9 @@ public class AddGoodOperation extends BaseOperation {
         int id = resultSet.getInt("FOOD_ID");
         Good good = new Good(
                 resultSet.getString("FOOD_NAME"),
-                getGoodType(resultSet.getString("FOOD_TYPE")),
+                DBUtils.getGoodType(resultSet.getString("FOOD_TYPE")),
                 resultSet.getBoolean("FOOD_EXOTIC")
         );
         return Map.of(id, good);
-    }
-
-    private GoodType getGoodType(String value) {
-        GoodType[] types = GoodType.values();
-        return Arrays.stream(types)
-                .filter(o -> o.getValue().equals(value))
-                .findFirst()
-                .orElseThrow();
     }
 }
