@@ -1,5 +1,6 @@
 package com.ibs.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ibs.models.enums.GoodType;
 
 public class Good {

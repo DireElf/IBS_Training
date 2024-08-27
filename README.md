@@ -36,6 +36,16 @@ mvn test -Dtest=TestRunner
 ```
 ---
 
+### Практическое задание №7: "REST"
+ 
+Запуск тестов API:
+
+```bash
+mvn test -Dtest=TestAddGoodAPI
+```
+---
+
+
 _Просмотреть отчет Allure после выполнения тестов:_
 ```bash
 mvn allure:serve
