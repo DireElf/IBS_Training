@@ -1,5 +1,3 @@
-[![Test](https://github.com/DireElf/Playwright-example/actions/workflows/main.yml/badge.svg)](https://github.com/DireElf/Playwright-example/actions/workflows/main.yml)
-
 ## Окружение
 
 - Приложение `qualit-sandbox`, запущенное на порту `8080`.
